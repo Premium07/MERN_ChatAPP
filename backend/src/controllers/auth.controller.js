@@ -51,3 +51,38 @@ export const register = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
+export const login = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    if (!email || !password) {
+      return res.status(400).json({ message: "All fields are required" });
+    }
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      return res.status(400).json({ message: "Invalid credentials" });
+    }
+
+    // generate token
+    generateToken(user._id, res);
+
+    res.status(200).json({
+      userId: user._id,
+      email: user.email,
+      fullName: user.fullName,
+      profilePic: user.profilePic,
+      message: "User logged in successfully",
+    });
+  } catch (error) {
+    console.log("error in login", error.message);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
