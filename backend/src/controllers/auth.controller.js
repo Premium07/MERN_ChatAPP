@@ -123,12 +123,12 @@ export const updateProfile = async (req, res) => {
 
 export const getProfile = async (req, res) => {
   try {
-    const user = await User.findById(req.user._id);
+    const user = await User.findById(req.user._id).select("-password");
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
 
-    user.password = undefined;
+    // user.password = undefined;
 
     res.status(200).json({
       user,
