@@ -127,11 +127,12 @@ export const getProfile = async (req, res) => {
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
+
+    user.password = undefined;
+
     res.status(200).json({
-      userId: user._id,
-      email: user.email,
-      fullName: user.fullName,
-      profilePic: user.profilePic,
+      user,
+      message: "User profile fetched successfully",
     });
   } catch (error) {
     console.log("error in getProfile", error.message);
