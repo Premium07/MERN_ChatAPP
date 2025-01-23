@@ -15,6 +15,7 @@ connectDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(cors({ credentials: true, origin: process.env.CLIENT_URL }));
 
 app.use("/api/auth", authRoutes);
 app.use("/api/chats", chatRoutes);
