@@ -9,11 +9,16 @@ import { useAuthStore } from "./store/useAuthStore";
 import { useEffect } from "react";
 
 const App = () => {
-  const { authUser, checkAuth } = useAuthStore();
+  const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
 
   useEffect(() => {
     checkAuth();
   }, [authUser, checkAuth]);
+
+  if (isCheckingAuth) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <div>
       <Navbar />
