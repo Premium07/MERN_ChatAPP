@@ -28,7 +28,7 @@ const Navbar = () => {
             <Link
               to={"/settings"}
               className={`
-              btn btn-sm gap-2 transition-colors
+              btn gap-2 transition-colors
               
               `}
             >
@@ -38,12 +38,12 @@ const Navbar = () => {
 
             {authUser && (
               <>
-                <Link to={"/profile"} className={`btn btn-sm gap-2`}>
+                <Link to={"/profile"} className={`btn gap-2`}>
                   <User className="size-5" />
                   <span className="hidden sm:inline">Profile</span>
                 </Link>
 
-                <button className="flex gap-2 items-center cursor-pointer" onClick={logout}>
+                <button className="flex gap-2 items-center cursor-pointer bg-red-900 btn" onClick={logout}>
                   <LogOut className="size-5" />
                   <span className="hidden sm:inline">Logout</span>
                 </button>
