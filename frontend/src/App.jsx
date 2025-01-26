@@ -28,7 +28,7 @@ const App = () => {
   }
 
   return (
-    <div data-theme={theme}>
+    <main data-theme={theme}>
       <Navbar />
       <Routes>
         <Route
@@ -50,7 +50,7 @@ const App = () => {
         />
       </Routes>
       <Toaster position="top-right" />
-    </div>
+    </main>
   );
 };
 
