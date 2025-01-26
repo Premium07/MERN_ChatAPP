@@ -99,7 +99,7 @@ const ProfilePage = () => {
               </div>
               <div className="flex items-center justify-between py-2">
                 <span>Account Status</span>
-                <span className="text-emerald-600 font-bold">Active</span>
+                <span className="font-bold">Active</span>
               </div>
             </div>
           </div>

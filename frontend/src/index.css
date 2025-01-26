@@ -6,3 +6,12 @@
     "luxury", "dracula", "cmyk", "autumn", "business", "acid", "lemonade",
     "night", "coffee", "winter", "dim", "nord", "sunset";
 }
+
+@font-face {
+  font-family: "GoogleSans";
+  src: url(../fonts/googleSans.ttf);
+}
+
+* {
+  font-family: "GoogleSans";
+}
