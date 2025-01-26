@@ -21,9 +21,9 @@ const ProfilePage = () => {
   };
 
   return (
-    <div className="h-screen pt-20">
-      <div className="max-w-2xl mx-auto p-4 py-8">
-        <div className="bg-base-300 rounded-xl p-6 space-y-8">
+    <div className="h-screen pt-15">
+      <div className="max-w-2xl mx-auto p-4">
+        <div className="bg-base-300 rounded-xl p-2 space-y-8">
           <div className="text-center">
             <h3 className="text-2xl font-semibold ">Profile</h3>
             <p className="mt-2">Your profile information</p>
@@ -31,7 +31,7 @@ const ProfilePage = () => {
 
           {/* avatar upload section */}
 
-          <div className="flex flex-col items-center gap-4">
+          <div className="flex flex-col items-center gap-2">
             <div className="relative">
               <img
                 src={selectedImg || authUser.profilePic || "/avatar.png"}
@@ -68,8 +68,8 @@ const ProfilePage = () => {
             </p>
           </div>
 
-          <div className="space-y-6">
-            <div className="space-y-1.5">
+          <div className="space-y-4 px-4">
+            <div className="space-y-2">
               <div className="text-sm text-zinc-400 flex items-center gap-2">
                 <User className="w-4 h-4" />
                 Full Name
@@ -79,7 +79,7 @@ const ProfilePage = () => {
               </p>
             </div>
 
-            <div className="space-y-1.5">
+            <div className="space-y-1">
               <div className="text-sm text-zinc-400 flex items-center gap-2">
                 <Mail className="w-4 h-4" />
                 Email Address
@@ -90,7 +90,7 @@ const ProfilePage = () => {
             </div>
           </div>
 
-          <div className="mt-6 bg-base-300 rounded-xl p-6">
+          <div className="mt-6 bg-base-300 rounded-xl p-4">
             <h2 className="text-lg font-medium  mb-4">Account Information</h2>
             <div className="space-y-3 text-sm">
               <div className="flex items-center justify-between py-2 border-b border-zinc-700">
