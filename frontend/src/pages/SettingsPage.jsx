@@ -1,4 +1,5 @@
 import { allThemes } from "../constants";
+import { useAuthStore } from "../store/useAuthStore";
 import { useThemeStore } from "../store/useThemeStore";
 import { Send } from "lucide-react";
 
@@ -13,9 +14,10 @@ const PREVIEW_MESSAGES = [
 
 const SettingsPage = () => {
   const { theme, setTheme } = useThemeStore();
+  const { authUser } = useAuthStore();
 
   return (
-    <section className="h-screen container mx-auto px-4 pt-20 max-w-5xl">
+    <section className="min-h-screen container mx-auto px-4 pt-20 pb-10 max-w-5xl">
       <div className="space-y-6">
         <div className="flex flex-col gap-1">
           <h2 className="text-lg font-semibold">Theme</h2>
@@ -29,7 +31,7 @@ const SettingsPage = () => {
             <button
               key={t}
               className={`
-                group flex flex-col items-center gap-1.5 p-2 rounded-lg transition-colors
+                group flex flex-col items-center gap-1.5 cursor-pointer p-2 rounded-lg transition-colors
                 ${theme === t ? "bg-base-200" : "hover:bg-base-200/50"}
               `}
               onClick={() => setTheme(t)}
@@ -62,11 +64,13 @@ const SettingsPage = () => {
                 {/* Chat Header */}
                 <div className="px-4 py-3 border-b border-base-300 bg-base-100">
                   <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-content font-medium">
-                      J
+                    <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-primary-content font-medium capitalize">
+                      {authUser ? authUser?.fullName.charAt(0) : "J"}
                     </div>
                     <div>
-                      <h3 className="font-medium text-sm">John Doe</h3>
+                      <h3 className="font-medium text-sm">
+                        {authUser ? authUser?.fullName : "John Doe"}
+                      </h3>
                       <p className="text-xs text-base-content/70">Online</p>
                     </div>
                   </div>
