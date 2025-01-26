@@ -1,7 +1,6 @@
 import express from "express";
 import {
   checkAuth,
-  getProfile,
   login,
   logout,
   register,
@@ -14,7 +13,7 @@ router.post("/register", register);
 router.post("/login", login);
 router.post("/logout", logout);
 router.put("/update-profile", isAuthenticated, updateProfile);
-router.get("/profile", isAuthenticated, getProfile);
+// router.get("/profile", isAuthenticated, getProfile);
 router.get('/check', isAuthenticated, checkAuth)
 
 export default router;

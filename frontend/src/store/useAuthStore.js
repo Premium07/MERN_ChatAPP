@@ -15,8 +15,8 @@ export const useAuthStore = create((set) => ({
       set({ authUser: res.data, isCheckingAuth: false });
     } catch (error) {
       set({ authUser: null });
-      console.log(error.response.data.message);
-      toast.error("login to continue...");
+      // console.log(error.response.data.message);
+      // toast.error("login to continue...");
     } finally {
       set({ isCheckingAuth: false });
     }
@@ -29,11 +29,18 @@ export const useAuthStore = create((set) => ({
       set({ authUser: res.data });
       toast.success(res.data.message);
     } catch (error) {
-      toast.error(error.response.data.message);
+      // Safely access error response data
+      const errorMessage =
+        error.response?.data?.message || "Something went wrong. Please try again.";
+      toast.error(errorMessage);
+  
+      // Optional: Log the full error for debugging
+      console.error("Error during signup:", error);
     } finally {
       set({ isSigningUp: false });
     }
   },
+  
 
   logout: async () => {
     try {
@@ -50,9 +57,9 @@ export const useAuthStore = create((set) => ({
     try {
       const res = await axiosInstance.post("/auth/login", data);
       set({ authUser: res.data });
-      toast.success(res.data.message);
+      toast.success("Logged in successfully");
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response?.data.message);
     } finally {
       set({ isLoggingIn: false });
     }
