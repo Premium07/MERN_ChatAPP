@@ -1,5 +1,6 @@
 import User from "../models/auth.model.js";
 import Chat from "../models/chat.model.js";
+import cloudinary from '../utils/cloudinary.js'
 
 export const getUsers = async (req, res) => {
   try {
