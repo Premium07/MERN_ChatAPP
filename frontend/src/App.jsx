@@ -15,7 +15,7 @@ const App = () => {
   const { authUser, checkAuth, isCheckingAuth, onlineUsers } = useAuthStore();
   const { theme } = useThemeStore();
 
-  console.log({onlineUsers});
+  console.log({ onlineUsers });
 
   useEffect(() => {
     checkAuth();
@@ -30,7 +30,12 @@ const App = () => {
   }
 
   return (
-    <main data-theme={theme}>
+    <main
+      data-theme={theme}
+      className={`${theme == "luxury" ? "" : "text-primary"} || ${
+        theme == "black" ? "text-white" : ""
+      } || ${theme == "wireframe" ? "text-zinc-800" : ""}`}
+    >
       <Navbar />
       <Routes>
         <Route
