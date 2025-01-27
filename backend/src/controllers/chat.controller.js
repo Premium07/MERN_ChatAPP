@@ -1,6 +1,7 @@
 import User from "../models/auth.model.js";
 import Chat from "../models/chat.model.js";
-import cloudinary from '../utils/cloudinary.js'
+import cloudinary from "../utils/cloudinary.js";
+import { getReceiverSocketId, io } from "../utils/socketio.js";
 
 export const getUsers = async (req, res) => {
   try {
@@ -55,6 +56,12 @@ export const sendMessages = async (req, res) => {
     });
 
     await newChat.save();
+
+    const recieverSocketId = getReceiverSocketId(recieverId);
+
+    if (recieverSocketId) {
+      io.to(recieverSocketId).emit("newMessage", newChat);
+    }
     res.status(201).json(newChat);
   } catch (error) {
     console.log("error in sending Messages", error.message);
