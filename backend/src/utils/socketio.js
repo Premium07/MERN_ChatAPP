@@ -14,11 +14,24 @@ const io = new Server(server, {
   },
 });
 
+// to store online users.
+const OnlineUsersSocket = {}; // {userId : socketId}
+
 io.on("connection", (socket) => {
   console.log(`user connected ${socket.id}`);
 
+  const userId = socket.handshake.query.userId;
+
+  if (userId) OnlineUsersSocket[userId] = socket.id;
+
+  //io.emit() is used to send events all the connected clients
+  io.emit("OnlineUsers", Object.keys(OnlineUsersSocket));
+
   socket.on("disconnect", () => {
     console.log(`user disconnected, ${socket.id}`);
+
+    delete OnlineUsersSocket[userId];
+    io.emit("OnlineUsers", Object.keys(OnlineUsersSocket));
   });
 });
 
