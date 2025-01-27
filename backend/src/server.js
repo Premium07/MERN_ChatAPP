@@ -6,8 +6,8 @@ import cors from "cors";
 import { connectDB } from "./config/db.js";
 import authRoutes from "./routes/auth.routes.js";
 import chatRoutes from "./routes/chat.routes.js";
+import { app, server } from "./utils/socketio.js";
 
-const app = express();
 const port = process.env.PORT || 5000;
 
 connectDB();
@@ -20,6 +20,6 @@ app.use(cors({ credentials: true, origin: process.env.CLIENT_URL }));
 app.use("/api/auth", authRoutes);
 app.use("/api/chat", chatRoutes);
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
