@@ -9,7 +9,7 @@ import chatRoutes from "./routes/chat.routes.js";
 import { app, server } from "./utils/socketio.js";
 import path from "path";
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT;
 const __dirname = path.resolve();
 
 connectDB();
