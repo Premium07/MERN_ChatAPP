@@ -22,7 +22,7 @@ const SignUpPage = () => {
   });
 
   const { signUp, isSigningUp } = useAuthStore();
-  
+
   const validateForm = () => {
     if (!formData.fullName.trim()) return toast.error("Full name is required");
     if (!formData.email.trim()) return toast.error("Email is required");
@@ -41,6 +41,12 @@ const SignUpPage = () => {
     if (success === true) {
       signUp(formData);
     }
+
+    setFormData({
+      email: "",
+      password: "",
+      fullName: "",
+    });
   };
   return (
     <section className="min-h-screen grid lg:grid-cols-2">

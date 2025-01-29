@@ -15,6 +15,10 @@ const LoginPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     login(formData);
+    setFormData({
+      email: "",
+      password: "",
+    });
   };
 
   return (
